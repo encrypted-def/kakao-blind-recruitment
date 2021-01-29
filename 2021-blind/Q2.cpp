@@ -6,11 +6,11 @@ vector<string> solution(vector<string> orders, vector<int> course) {
     // A. 코스 메뉴 조합 추출
     for(auto order : orders){
         sort(order.begin(), order.end());
-        for(int i = 0; i < (1 << order.size()); i++)
+        for(int i = 1; i < (1 << order.size()); i++)
         {
             string menu;
             /*for(int j = 0; j < order.size(); j++){
-                if(i & (1<<j)) course += order[j];
+                if(i & (1<<j)) course += menu[j];
             }*/
             int tmp = i;
             for(int j = 0; j < order.size(); j++){
