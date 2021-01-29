@@ -17,7 +17,7 @@ class Solution {
             for(int i = 1; i < (1 << order.length); i++){
                 String menu = "";
                 /*for(int j = 0; j < order.length; j++){
-                    if(i & (1 << j)) menu += order[j];
+                    if((i & (1 << j)) != 0) menu += order[j];
                 }*/
                 int tmp = i;
                 for(int j = 0; j < order.length; j++){
