@@ -26,7 +26,7 @@ def solution(play_time, adv_time, logs):
     # cnt2 : 끝 구간에서의 시청중인 사람의 수
     idx1, idx2, cnt1, cnt2 = 0, 0, 0, 0
     curtime, curval = 0, 0
-    while idx2 != len(event) - 1 and event[idx2+1][0] <= at:
+    while idx2 < len(event) - 1 and event[idx2+1][0] <= at:
         curval += (event[idx2+1][0]-event[idx2][0]) * cnt2
         cnt2 += event[idx2+1][1]
         idx2 += 1
