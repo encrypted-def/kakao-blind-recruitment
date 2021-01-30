@@ -36,7 +36,7 @@ vector<int> solution(vector<string> info, vector<string> query) {
     vector<int> answer;
     for(auto q : query){
         int v[4];
-        int idx1 = 0, idx2 = q.find(" and ", idx1);
+        int idx1 = 0, idx2 = q.find(" ", idx1);
         for(int i = 0; i < 4; i++){
             string cond = q.substr(idx1, idx2 - idx1);
             idx1 = idx2+5;
