@@ -8,5 +8,7 @@ def solution(n, s, a, b, fares):
     for k in range(1, n+1):
         for i in range(1, n+1):
             for j in range(1, n+1):
-                d[i][j] = min(d[i][j], d[i][k] + d[k][j])    
+                if d[i][j] > d[i][k] + d[k][j]:
+                    d[i][j] = d[i][k] + d[k][j]
+    
     return min(d[s][mid]+d[mid][a]+d[mid][b] for mid in range(1, n+1))
