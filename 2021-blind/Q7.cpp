@@ -12,7 +12,6 @@ void dfs(int cur){
         return;
     }
     ll mingap = INF;
-    ll tmp = 0;
     d[cur][0] = s[cur];
     for(auto x : adj[cur]){
         dfs(x);
