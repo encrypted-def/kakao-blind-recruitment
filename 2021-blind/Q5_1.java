@@ -19,6 +19,7 @@ class Solution {
     
     public String solution(String play_time, String adv_time, String[] logs) {
         int pt = s2i(play_time), at = s2i(adv_time);
+        // A. 특정 초에 시청중인 사람의 수 계산
         int d[] = new int[360001];
         for(int i = 0; i < logs.length; i++){
             String l = logs[i];
@@ -26,6 +27,7 @@ class Solution {
             d[st]++; d[en]--;
         }
         for(int i = 1; i <= 360000; i++) d[i] += d[i-1];
+        // B. 누적 재생시간이 가장 많은 곳 계산
         long mxval = 0, curval = 0;
         int mxtime = 0;
         for(int i = 0; i < at; i++) curval += d[i];
