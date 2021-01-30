@@ -49,34 +49,26 @@ int solution(vector<vector<int>> board, int r, int c) {
         occur[board[i][j]].push_back({i,j});
     }
 
-    vector<int> brute;
+    vector<int> p;
     for(int i = 1; i <= 6; i++){
-        if(!occur[i].empty()) brute.push_back(i);
+        if(!occur[i].empty()) p.push_back(i);
     }
-    int n = brute.size(); // 카드 종류의 개수
+    int n = p.size(); // 카드 종류의 개수
     int ans = 99999999;
-    do{ // 제거할 종류의 순서
-        for(int i = 0; i < (1<<n); i++){ // 2장씩 있는 각 종류에 대해 둘 중에서 어느 것을 먼저 제거할지
-            vector<vector<int>> myboard = board;
-            vector<pii> visOrder;
-            visOrder.push_back({r, c});
-            for(int j = 0; j < n; j++){
-                if(i & (1<<j)){
-                    visOrder.push_back(occur[brute[j]][0]);
-                    visOrder.push_back(occur[brute[j]][1]);
-                }
-                else{
-                    visOrder.push_back(occur[brute[j]][1]);
-                    visOrder.push_back(occur[brute[j]][0]);
-                }
-            }
-            int cur = 2*n; // enter
-            for(int j = 1; j < visOrder.size(); j++){
-                cur += dist(myboard, visOrder[j-1], visOrder[j]);
-                myboard[visOrder[j].X][visOrder[j].Y] = 0;
-            }            
-            ans = min(ans,cur);
+    do{ // 제거할 종류의 순서에 대한 permutation
+        vector<vector<int>> myboard = board;
+        int d[6][2];
+        d[0][0] = dist(myboard, {r, c}, occur[p[0]][0]) + dist(myboard, occur[p[0]][0], occur[p[0]][1]);
+        d[0][1] = dist(myboard, {r, c}, occur[p[0]][1]) + dist(myboard, occur[p[0]][1], occur[p[0]][0]);
+        myboard[occur[p[0]][0].X][occur[p[0]][0].Y] = 0;
+        myboard[occur[p[0]][1].X][occur[p[0]][1].Y] = 0;
+        for(int i = 1; i < n; i++){
+             d[i][0] = min(d[i-1][0] + dist(myboard, occur[p[i-1]][1], occur[p[i]][0]), d[i-1][1] + dist(myboard, occur[p[i-1]][0], occur[p[i]][0])) + dist(myboard, occur[p[i]][0], occur[p[i]][1]);
+            d[i][1] = min(d[i-1][0] + dist(myboard, occur[p[i-1]][1], occur[p[i]][1]), d[i-1][1] + dist(myboard, occur[p[i-1]][0], occur[p[i]][1])) + dist(myboard, occur[p[i]][1], occur[p[i]][0]);
+            myboard[occur[p[i]][0].X][occur[p[i]][0].Y] = 0;
+            myboard[occur[p[i]][1].X][occur[p[i]][1].Y] = 0;        
         }
-    }while(next_permutation(brute.begin(), brute.end()));
-    return ans;
+        ans = min({ans, d[n-1][0], d[n-1][1]});        
+    }while(next_permutation(p.begin(), p.end()));
+    return ans + 2*n;
 }
