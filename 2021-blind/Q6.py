@@ -48,7 +48,6 @@ def solution(board, r, c):
         myboard[occur[p[0]][0][0]][occur[p[0]][0][1]] = 0
         myboard[occur[p[0]][1][0]][occur[p[0]][1][1]] = 0        
         for i in range(1, n):
-            myDist = dist(myboard, occur[p[i]][0], occur[p[i]][1])
             d[i][0] = min(d[i-1][0] + dist(myboard, occur[p[i-1]][1], occur[p[i]][0]), d[i-1][1] + dist(myboard, occur[p[i-1]][0], occur[p[i]][0])) + dist(myboard, occur[p[i]][0], occur[p[i]][1])
             d[i][1] = min(d[i-1][0] + dist(myboard, occur[p[i-1]][1], occur[p[i]][1]), d[i-1][1] + dist(myboard, occur[p[i-1]][0], occur[p[i]][1])) + dist(myboard, occur[p[i]][1], occur[p[i]][0])
             myboard[occur[p[i]][0][0]][occur[p[i]][0][1]] = 0
