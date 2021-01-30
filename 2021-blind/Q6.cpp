@@ -20,7 +20,7 @@ int dist(vector<vector<int>>& board, pii src, pii dst){
     while(!q.empty()){
         auto cur = q.front(); q.pop();
         for(int dir = 0; dir < 4; dir++){
-            int en = 0; // dir 방향으로 진행할 때 카드까지의 거리
+            int en = 0; // dir 방향으로 진행할 때 카드 혹은 마지막 까지의 거리
             while(true){
                 int nx = cur.X+dx[dir]*en;
                 int ny = cur.Y+dy[dir]*en;
