@@ -7,7 +7,7 @@ string solution(int n, int k, vector<string> cmd) {
     string status(n, 'O');
     for(int i = 0; i < n; i++){
         pre[i] = i-1;
-        nxt[i] = i+1;        
+        nxt[i] = i+1;
     }
     nxt[n-1] = -1;    
     stack<tuple<int,int,int>> erased;
@@ -26,7 +26,7 @@ string solution(int n, int k, vector<string> cmd) {
             // pre, nxt를 변경해 제거를 수행
             if(pre[cursor] != -1) nxt[pre[cursor]] = nxt[cursor];
             if(nxt[cursor] != -1) pre[nxt[cursor]] = pre[cursor];
-            status[cursor] = 'X';            
+            status[cursor] = 'X';
             // 커서 이동
             if(nxt[cursor] != -1) cursor = nxt[cursor];
             else cursor = pre[cursor];
@@ -41,8 +41,6 @@ string solution(int n, int k, vector<string> cmd) {
                 nxt[pp] = cc;
             if(nn != -1)
                 pre[nn] = cc;
-            pre[cc] = pp;
-            nxt[cc] = nn;
             status[cc] = 'O';
         }        
     }
