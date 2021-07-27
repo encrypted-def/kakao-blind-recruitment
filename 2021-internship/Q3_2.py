@@ -33,7 +33,6 @@ def solution(n, k, cmd):
             pp,cc,nn = erased.pop()
             if pp != -1: nxt[pp] = cc
             if nn != -1: pre[nn] = cc
-            pre[cc], nxt[cc] = pp, nn
             status[cc] = 'O'
             
     return ''.join(status)
