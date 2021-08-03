@@ -7,16 +7,16 @@ adj = [[] for i in range(205)]
 def dijkstra(st, idx):
     heap = []
     d[idx][st] = 0
-    heapq.heappush(heap, (-d[idx][st], st))
+    heapq.heappush(heap, (d[idx][st], st))
     while heap:
         cur = heapq.heappop(heap)
-        dist, i = -cur[0], cur[1]
+        dist, i = cur[0], cur[1]
         if d[idx][i] != dist: continue
         for nxt in adj[i]:
             cost, ni = nxt
             if d[idx][ni] > dist + cost:
                 d[idx][ni] = dist + cost
-                heapq.heappush(heap, (-d[idx][ni], ni))
+                heapq.heappush(heap, (d[idx][ni], ni))
 
 def solution(n, s, a, b, fares):
     for v in fares:
