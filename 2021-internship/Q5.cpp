@@ -6,7 +6,7 @@ int r[10005]; // 오른쪽 자식 노드 번호
 int x[10005]; // 시험장의 응시 인원
 int p[10005]; // 부모 노드 번호
 int n; // 노드의 수
-int root; // 루트 번호
+int root; // 루트
 
 // cur : 현재 보는 노드 번호, lim : 그룹의 최대 인원 수, cnt : 그룹의 수
 int dfs(int cur, int lim, int& cnt){
@@ -36,6 +36,7 @@ int solve(int lim){
 
 int solution(int k, vector<int> num, vector<vector<int>> links) {
     n = num.size();
+    fill(p,p+n,-1);
     for(int i = 0; i < n; i++){
         l[i] = links[i][0];
         r[i] = links[i][1];
@@ -43,7 +44,7 @@ int solution(int k, vector<int> num, vector<vector<int>> links) {
         if(l[i] != -1) p[l[i]] = i;
         if(r[i] != -1) p[r[i]] = i;
     }
-    root = min_element(p,p+n) - p; // root의 경우 parent가 없어 값이 0이므로 min_element를 찾으면 그것이 root이다.
+    root = min_element(p,p+n) - p; // root의 경우 parent가 없어 값이 -1이므로 min_element를 찾으면 그것이 root이다.
     int st = *max_element(x,x+n);
     int en = 1e8;
     while(st < en){
