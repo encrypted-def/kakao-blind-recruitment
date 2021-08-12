@@ -22,9 +22,9 @@ def solution(n, k, cmd):
         elif parse[0] == 'C':
             erased.append((pre[cursor], cursor, nxt[cursor]))
             # pre, nxt를 변경해 제거를 수행
-            if pre[cursor] != -1: nxt[pre[cursor]] = nxt[cursor];
-            if nxt[cursor] != -1: pre[nxt[cursor]] = pre[cursor];
-            status[cursor] = 'X';
+            if pre[cursor] != -1: nxt[pre[cursor]] = nxt[cursor]
+            if nxt[cursor] != -1: pre[nxt[cursor]] = pre[cursor]
+            status[cursor] = 'X'
             # 커서 이동
             if nxt[cursor] != -1: cursor = nxt[cursor]
             else: cursor = pre[cursor]
