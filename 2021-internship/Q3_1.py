@@ -18,10 +18,14 @@ def insert(addr, num):
     unused = unused + 1
     return unused - 1
     
+# addr번지의 원소를 제거, 제거한 다음 원소를 반환. 만약 삭제된 원소가 가장 마지막 원소였을 경우 이전 원소를 반환(문제의 상황과 동일)
 def erase(addr):
     global unused
     nxt[pre[addr]] = nxt[addr]
-    if nxt[addr] != -1: pre[nxt[addr]] = pre[addr]
+    if nxt[addr] != -1:
+      pre[nxt[addr]] = pre[addr]
+      return nxt[addr]
+    return pre[addr]
     
 def solution(n, k, cmd):
     for i in range(n):
@@ -40,9 +44,7 @@ def solution(n, k, cmd):
                 cursor = nxt[cursor]
         elif parse[0] == 'C':
             erased.append((dat[pre[cursor]], dat[cursor])) # pre value, cur value
-            erase(cursor)
-            if nxt[cursor] == -1: cursor = pre[cursor]
-            else: cursor = nxt[cursor]
+            cursor = erase(cursor)
         else: # 'Z'
             preval, curval = erased.pop()
             if preval == -1: preidx = 0
