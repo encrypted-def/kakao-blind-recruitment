@@ -3,7 +3,7 @@ using namespace std;
 list<int> l;
 list<int>::iterator its[1000005];
 list<int>::iterator cursor; 
-vector<pair<int,int>> erased;
+stack<pair<int,int>> erased;
 string solution(int n, int k, vector<string> cmd) {
     for(int i = 0; i < n; i++)
         l.push_back(i);
@@ -24,15 +24,15 @@ string solution(int n, int k, vector<string> cmd) {
             while(num--) cursor++;
         }
         else if(s[0] == 'C'){
-            erased.push_back({*cursor, *(next(cursor))});
+            erased.push({*cursor, *(next(cursor))});
             cursor = l.erase(cursor);
             if(*cursor == n) cursor--;
         }
         else{ // Z
             int cur, nxt;
-            tie(cur,nxt) = erased.back();
-            erased.pop_back();
-            its[cur] = l.insert(its[nxt],cur);            
+            tie(cur,nxt) = erased.top();
+            erased.pop();
+            its[cur] = l.insert(its[nxt],cur);
         }        
     }
     string status(n, 'X');
