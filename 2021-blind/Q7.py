@@ -1,3 +1,6 @@
+import sys
+sys.setrecursionlimit(10**6)
+
 adj = [[] for i in range(300005)]
 INF = 0x7fffffff7fffffff
 d = [[0]*2 for i in range(300005)]
