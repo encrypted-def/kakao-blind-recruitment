@@ -25,11 +25,12 @@ class Solution {
     }
     
     final int INF = 0x7f7f7f7f;
-    int d[][] = new int[1004][1024];
-    List<pair> adj[] = new ArrayList[1004];
-    List<pair> adjrev[] = new ArrayList[1004];
+    int d[][] = new int[1004][1024]; // d[i][state] : (상태 0, start번 노드)에서 (상태 state, i번 노드)로 갈 때의 최단경로
+    List<pair> adj[] = new ArrayList[1004]; // 정방향 간선(번호, 시간)
+    List<pair> adjrev[] = new ArrayList[1004]; // 역방향 간선(번호, 시간)
     int trapidx[] = new int[1004];
     
+    // 상태 state에 i번 비트가 켜져있는지를 반환하는 함수
     boolean bitmask(int state, int idx){
         return ((1 << trapidx[idx]) & state) != 0;
     }
