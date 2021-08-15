@@ -6,6 +6,7 @@ adj = [[] for _ in range(1004)] # 정방향 간선(번호, 시간)
 adjrev = [[] for _ in range(1004)] # 역방향 간선(번호, 시간)
 trapidx = [-1] * 1004 # trapidx[i] : i번 노드의 함정 번호. 함정은 0번부터 차례로 번호가 부여되어 있으며 i번 노드가 함정이 아닐 경우 -1
 
+# 상태 state에 i번 비트가 켜져있는지를 반환하는 함수
 def bitmask(state, idx):
     return (1 << trapidx[idx]) & state
 
@@ -49,5 +50,4 @@ def solution(n, start, end, roads, traps):
                 d[nxt][nxt_state] = dist + val
                 heapq.heappush(heap, (d[nxt][nxt_state], nxt, nxt_state))
     
-    assert(0)
     return -1 # Unreachable
