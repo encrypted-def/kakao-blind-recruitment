@@ -19,7 +19,6 @@ class Solution {
         // 라이언은 자신이 승리할 점수를 선택. brute = 1100100001(2)이면
         // 10, 5, 2, 1점에서 이길 것임을 의미.
         for(int brute = 0; brute < 1024; brute++){
-            // 백트래킹으로 가능한 모든 경우를 따져볼 변수, 저장 형식은 mn과 동일
             int[] arrow = new int[12];
             int score = 0;
             int left = n; // 남아있는 화살의 수
