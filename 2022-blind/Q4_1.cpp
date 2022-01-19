@@ -5,7 +5,7 @@ using namespace std;
 bool cmp(vector<int>& a, vector<int>& b){
     for(int i = 11; i >= 0; i--)
         if(a[i] != b[i]) return a[i] > b[i];
-    return true;
+    return false;
 }
 
 /*
