@@ -11,10 +11,8 @@ bool cmp(vector<int>& a, vector<int>& b){
 /*
 vector<int> arrow(12);
 // idx번째 값을 정함, 현재 화살은 left개 남아있음
-int cnt = 0;
 void bt(int idx, int left){
     if(idx == 10){ // 10번째의 값이 정해진 상황이라면
-        cnt++;
         arrow[idx] = left;
         // arrow를 가지고 점수 계산을 수행하면 됨
         return;
