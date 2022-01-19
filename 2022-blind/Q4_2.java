@@ -29,10 +29,8 @@ class Solution {
                     left -= (info[i]+1);
                     arrow[i] = info[i]+1;
                 }
-                else{ // i번째 비트가 꺼져 있는 경우(10-i점에서 패배할 계획)
-                    if(info[i] != 0)
-                        score -= (10-i);
-                }
+                else if(info[i] != 0) // i번째 비트가 꺼져 있는 경우(10-i점에서 패배할 계획), 어피치가 1개라도 맞췄으면 점수에 반영
+                    score -= (10-i);                
             }
             // 라이언의 점수가 높지 않거나 화살을 n발 초과로 쏜 경우
             if(score <= 0 || left < 0) continue;
