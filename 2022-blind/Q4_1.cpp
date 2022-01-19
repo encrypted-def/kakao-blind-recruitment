@@ -31,6 +31,7 @@ vector<int> solution(int n, vector<int> info) {
     vector<int> brute(n + 10); // 중복 조합을 위한 값(칸막이 : 1)
     fill(brute.begin() + n, brute.end(), 1); // 10개의 칸막이를 배치
     do{
+        // arrow[0..10]에 중복 조합의 결과 저장
         vector<int> arrow; // ret과 같은 형식
         int before = -1;
         for(int i = 0; i < n+10; i++){
@@ -39,16 +40,13 @@ vector<int> solution(int n, vector<int> info) {
                 before = i;
             }            
         }
-        arrow.push_back(n + 10 - before - 1);
-        // arrow[0..10]에 중복 조합의 결과 저장
+        arrow.push_back(n + 10 - before - 1);        
         int score = 0;
         for(int i = 0; i <= 10; i++){
             if(arrow[i] > info[i])
                 score += (10 - i);
-            else{
-                if(info[i] != 0)
-                    score -= (10 - i);
-            }
+            else if(info[i] != 0)
+                score -= (10 - i);            
         }
         if(score <= 0) continue;
         arrow.push_back(score);
