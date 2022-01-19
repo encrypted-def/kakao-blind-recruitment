@@ -21,10 +21,8 @@ class Solution {
             for(int i = 0; i <= 10; i++){
                 if(arrow[i] > info[i])
                     score += (10 - i);
-                else{
-                    if(info[i] != 0)
-                        score -= (10 - i);
-                }
+                else if(info[i] != 0)
+                    score -= (10 - i);
             }
             if(score <= 0) return;
             arrow[11] = score;
@@ -45,9 +43,9 @@ class Solution {
         Arrays.fill(mn, -1);
         bt(0, n, info); // backtracking을 통해 ret에 정답을 넣어둠
         if(mn[0] == -1){
-            int[] ret = new int[1];
-            ret[0] = -1;
-            return ret;
+            int[] ret_arr = new int[1];
+            ret_arr[0] = -1;
+            return ret_arr;
         }
         int[] ret = new int[11];
         for(int i = 0; i < 11; i++)
