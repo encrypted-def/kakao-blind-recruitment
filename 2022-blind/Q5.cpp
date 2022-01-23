@@ -12,7 +12,6 @@ int vis[1<<17]; // vis[x] : 상태 x를 방문했는가?
 void solve(int state){
     if(vis[state]) return;
     vis[state] = 1;
-    vector<int> onoff(n);
     // wolf : 늑대의 수, num : 전체 정점의 수
     int wolf = 0, num = 0;
     for(int i = 0; i < n; i++){
