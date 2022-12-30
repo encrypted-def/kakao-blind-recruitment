@@ -13,7 +13,7 @@ int solution(vector<int> queue1, vector<int> queue2) {
         tot2 += x;
         q2.push(x);
     }
-    for(int i = 0; i < 4 * queue1.size(); i++){
+    for(int i = 0; i < 4 * queue1.size() + 1; i++){
         if(tot1 == tot2) return i;
         if(tot1 < tot2){
             int x = q2.front();
