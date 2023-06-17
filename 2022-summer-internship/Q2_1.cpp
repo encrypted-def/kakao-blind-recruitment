@@ -25,7 +25,7 @@ int solution(vector<int> queue1, vector<int> queue2) {
         // while문을 탈출하면 a[st]+...+a[en] 구간의 합이 target 이상임을 의미
         if(tot == target){ // 구간의 합이 정확히 target과 일치할 경우
             int moves; // 작업 횟수
-            if(en < n-1) moves = st + n + en; // en이 끝에서 돌아 다시 앞으로 옴
+            if(en < n-1) moves = 3*n + 1 + st + en; // 3n+1번의 연산을 통해 큐1에 첫 번째 원소만 남길 수 있고, 이후 st+en 번의 추가적인 연산을 거쳐 a[st] .. a[en]을 큐1에 둘 수 있음
             else moves = st + (en - n + 1);
             ans = min(ans, moves);
         }
